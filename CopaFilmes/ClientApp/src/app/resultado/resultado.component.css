@@ -1,0 +1,76 @@
+.traco {
+  width: 25px;
+  height: 3px;
+  background-color: #a8a8a8;
+  margin: 0 auto 33px auto;
+}
+
+header {
+  background-color: #6e6e6e;
+  color: #ffffff;
+  padding: 45px 0;
+}
+
+.sub-title {
+  margin-bottom: 0;
+  color: #a8a8a8;
+}
+
+p.info {
+  font-weight: 600;
+  width: 50%;
+  font-size: 14px;
+  margin: 0 auto;
+}
+
+.title-fase {
+  font-size: 1.9em;
+}
+
+.btn-campeonato {
+  border-radius: 1px;
+  background-color: #343434;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 14px 25px;
+}
+
+.card-title {
+  margin-bottom: 0;
+}
+
+.card {
+  border-radius: 1px;
+}
+
+.card, label {
+  cursor: pointer;
+}
+
+.card input[type=checkbox] {
+  display: none;
+}
+
+label span {
+  height: 20px;
+  width: 20px;
+  border: 2px solid #a8a8a8;
+  border-radius: 3px;
+  position: absolute;
+  margin: 37px 4px 40px 20px;
+  text-align: center;
+}
+
+[type=checkbox]:checked + span:before {
+  content: '\2718';
+  font-size: 11px;
+  display: block;
+}
+
+.selecionados {
+  font-size: 21px;
+  font-weight: 600;
+  word-wrap: break-word;
+  /*width: 12%;*/
+}
