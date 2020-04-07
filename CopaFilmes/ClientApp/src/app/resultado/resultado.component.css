@@ -42,6 +42,7 @@ p.info {
 
 .card {
   border-radius: 1px;
+  background-color: transparent;
 }
 
 .card, label {
@@ -73,4 +74,12 @@ label span {
   font-weight: 600;
   word-wrap: break-word;
   /*width: 12%;*/
+}
+
+.classificacao {
+  text-align: center;
+  padding: 20px;
+  margin: auto;
+  background-color: #6e6e6e;
+  color: white;
 }
