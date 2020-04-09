@@ -7,5 +7,6 @@ namespace Service.Interfaces
     public interface IFilmeService
     {
         Task<IEnumerable<Filme>> Get();
+        void IniciarCompeticao(List<Filme> filmes);
     }
 }

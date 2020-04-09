@@ -7,12 +7,37 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
+  private baseUrl: string;
+  private http: HttpClient;
   public filmes: Filme[];
+  public countChecks: number = 0;
 
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    http.get<Filme[]>(`${baseUrl}api/filme`).subscribe(result => {
+    this.baseUrl = baseUrl;
+    this.http = http;
+
+    this.http.get<Filme[]>(`${baseUrl}api/filme`).subscribe(result => {
       this.filmes = result;
     }, error => console.error(error));
+  }
+
+  generate() {
+    if (this.countChecks != 8) {
+      console.error("Quantidade de filmes incorreta.");
+    }
+
+    let filmesChecked = this.filmes.filter(x => x.checked);
+
+    this.http.post(`${this.baseUrl}api/filme`, filmesChecked).subscribe(result => result, error => console.error(error));
+  }
+
+  posChange(filme, event) {
+    if (this.countChecks >= 8) {
+      event.target.checked = false;
+      filme.checked = false;
+    }
+
+    this.countChecks = this.filmes ? this.filmes.filter(x => x.checked).length : 0;
   }
 }
 
@@ -21,5 +46,6 @@ interface Filme {
   titulo: string;
   ano: number;
   nota: number;
+  checked: boolean;
 }
 

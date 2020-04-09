@@ -6,23 +6,23 @@
 </header>
 
 <section class="mt-4 d-flex justify-content-between">
-  <p class="text-white selecionados">Selecionados 0 de 8 filmes</p>
-  <button class="btn btn-campeonato" [routerLink]="['/resultado']">GERAR MEU CAMPEONATO</button>
+  <p class="text-white selecionados">Selecionados {{ countChecks }} de 8 filmes</p>
+  <button class="btn btn-campeonato" (click)="generate()">GERAR MEU CAMPEONATO</button>
 </section>
 
 <p *ngIf="!filmes"><em>Carregando...</em></p>
 
 <section class="row row-cols-1 row-cols-md-4 mt-4" *ngIf="filmes">
   <div class="col mb-4" *ngFor="let filme of filmes">
-    <div class="card">
-      <label>
-        <input class="c-card" type="checkbox" id="{{ filme.id }}" value="{{ filme.id }}">
+    <label class="card">
+      <div>
+        <input class="c-card input-filme" type="checkbox" [(ngModel)]="filme.checked" (change)="posChange(filme, $event)" id="{{ filme.id }}" value="{{ filme.id }}">
         <span></span>
         <div class="card-body">
           <h5 class="card-title">{{ filme.titulo }}</h5>
           <p class="card-text"><small class="text-muted">{{ filme.ano }}</small></p>
         </div>
-      </label>
-    </div>
+      </div>
+    </label>
   </div>
 </section>
