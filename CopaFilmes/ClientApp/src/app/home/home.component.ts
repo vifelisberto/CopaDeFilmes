@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -8,13 +9,11 @@ import { HttpClient } from '@angular/common/http';
 })
 export class HomeComponent {
   private baseUrl: string;
-  private http: HttpClient;
   public filmes: Filme[];
   public countChecks: number = 0;
 
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+  constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string, private router: Router) {
     this.baseUrl = baseUrl;
-    this.http = http;
 
     this.http.get<Filme[]>(`${baseUrl}api/filme`).subscribe(result => {
       this.filmes = result;
@@ -27,8 +26,13 @@ export class HomeComponent {
     }
 
     let filmesChecked = this.filmes.filter(x => x.checked);
-
-    this.http.post(`${this.baseUrl}api/filme`, filmesChecked).subscribe(result => result, error => console.error(error));
+    this.http.post(`${this.baseUrl}api/campeonato`, filmesChecked)
+      .subscribe(result =>
+      {
+        debugger;
+        console.log(result);
+        this.router.navigate(['resultado'], { state: result });
+      }, error => console.error(error));
   }
 
   posChange(filme, event) {

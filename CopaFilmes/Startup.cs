@@ -1,5 +1,3 @@
-using Infra;
-using Infra.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
@@ -25,7 +23,7 @@ namespace CopaFilmes
         {
             services.AddHttpClient();
             services.AddScoped<IFilmeService, FilmeService>();
-            services.AddScoped<IFilmeApi, FilmeApi>();
+            services.AddScoped<IApiService, ApiService>();
 
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory

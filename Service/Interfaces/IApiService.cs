@@ -4,8 +4,8 @@ using System.Threading.Tasks;
 
 namespace Service.Interfaces
 {
-    public interface IFilmeService
+    public interface IApiService
     {
-        Task<IEnumerable<Filme>> GetFilmes();
+        Task<IEnumerable<Filme>> Get();
     }
 }

@@ -5,16 +5,16 @@
   <p class="info">Veja o resultado final do Campeonato de filmes de forma simples e rápida.</p>
 </header>
 
-<section class="row row-cols-1 row-cols-md-1 row-cols-xs-1 mt-4">
-  <div class="col mb-4">
+<section class="row row-cols-1 row-cols-md-1 row-cols-xs-1 mt-4" *ngIf="filmesCampeoes">
+  <div class="col mb-4" *ngFor="let filme of filmesCampeoes; index as i">
     <div class="card">
       <div class="row no-gutters">
         <div class="col-2 col-md-1 classificacao">
-          1º
+          {{i+1}}º
         </div>
         <div class="col-10 col-md-11 bg-white">
           <div class="card-body">
-            <h5 class="card-title">Título do Filme Campeão</h5>
+            <h5 class="card-title">{{filme.titulo}}</h5>
           </div>
         </div>
       </div>

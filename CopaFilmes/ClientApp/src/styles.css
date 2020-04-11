@@ -98,3 +98,7 @@ label div span {
   font-weight: 600;
   word-wrap: break-word;
 }
+
+.btn:hover {
+  color: #ddd9d9;
+}
