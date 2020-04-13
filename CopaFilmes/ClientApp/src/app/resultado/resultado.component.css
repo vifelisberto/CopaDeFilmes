@@ -83,3 +83,7 @@ label span {
   background-color: #6e6e6e;
   color: white;
 }
+
+.classificacao span {
+    font-size: 40px;
+}
