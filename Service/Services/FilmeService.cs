@@ -14,6 +14,6 @@ namespace Service.Services
             _api = api;
         }
 
-        public async Task<IEnumerable<Filme>> GetFilmes() => await _api.Get();
+        public async Task<IEnumerable<Filme>> GetFilmes() => await _api.Get().ConfigureAwait(false);
     }
 }
