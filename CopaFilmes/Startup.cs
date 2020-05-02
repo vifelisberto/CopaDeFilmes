@@ -43,7 +43,7 @@ namespace CopaFilmes
             services.AddControllers();
             services.AddSpaStaticFiles(configuration =>
             {
-                configuration.RootPath = "ClientApp/dist";
+                configuration.RootPath = "Application/dist";
             });
         }
 
@@ -77,7 +77,7 @@ namespace CopaFilmes
 
             app.UseSpa(spa =>
             {
-                spa.Options.SourcePath = "ClientApp";
+                spa.Options.SourcePath = "Application";
 
                 if (env.IsDevelopment())
                 {
