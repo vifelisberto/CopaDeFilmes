@@ -1,11 +1,19 @@
-﻿using System;
+﻿using CopaFilmes.Domain.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace CopaFilmes.Domain.Entities
 {
-    public static class Campeonato
+    public class Campeonato : ICampeonato
     {
+        private readonly IRodada _rodada;
+
+        public Campeonato(IRodada rodada)
+        {
+            _rodada = rodada;
+        }
+
         private const int QTD_COMPETIDORES_VALIDA = 8;
 
         /// <summary>
@@ -13,7 +21,7 @@ namespace CopaFilmes.Domain.Entities
         /// </summary>
         /// <param name="filmes">Filmes que irão disputar.</param>
         /// <returns>Retorna os vencedores.</returns>
-        public static IEnumerable<Filme> Iniciar(IEnumerable<Filme> filmes)
+        public IEnumerable<Filme> Iniciar(IEnumerable<Filme> filmes)
         {
             int qtdFilmes = filmes.Count();
 
@@ -32,12 +40,12 @@ namespace CopaFilmes.Domain.Entities
         /// </summary>
         /// <param name="filmes">Filmes que irão participar do campeonato.</param>
         /// <returns>Retorna os vencedores.</returns>
-        private static Filme[] ExecutarRodadas(IEnumerable<Filme> filmes)
+        private Filme[] ExecutarRodadas(IEnumerable<Filme> filmes)
         {
-            filmes = Rodada.IniciarPrimeiraRodada(filmes);
-            filmes = Rodada.IniciarSemiFinal(filmes);
+            filmes = _rodada.IniciarPrimeiraRodada(filmes);
+            filmes = _rodada.IniciarSemiFinal(filmes);
 
-            return Rodada.IniciarFinal(filmes.ElementAtOrDefault(0), filmes.ElementAtOrDefault(1));
+            return _rodada.IniciarFinal(filmes.ElementAtOrDefault(0), filmes.ElementAtOrDefault(1));
         }
     }
 }

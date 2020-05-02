@@ -1,3 +1,5 @@
+using CopaFilmes.Domain.Entities;
+using CopaFilmes.Domain.Interfaces;
 using CopaFilmes.Service.Entities;
 using CopaFilmes.Service.Interfaces;
 using Microsoft.AspNetCore.Builder;
@@ -23,6 +25,9 @@ namespace CopaFilmes
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddHttpClient();
+            services.AddScoped<ICampeonato, Campeonato>();
+            services.AddScoped<IPartida, Partida>();
+            services.AddScoped<IRodada, Rodada>();
             services.AddScoped<IFilmeService, FilmeService>();
             services.AddScoped<IApiService, ApiService>();
 

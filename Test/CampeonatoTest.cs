@@ -1,4 +1,6 @@
 using CopaFilmes.Domain.Entities;
+using CopaFilmes.Domain.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Linq;
@@ -70,12 +72,25 @@ namespace Test
             };
         #endregion
 
+        private readonly ICampeonato _campeonato;
+
+        public CampeonatoTest()
+        {
+            var service = new ServiceCollection();
+            service.AddTransient<ICampeonato, Campeonato>();
+            service.AddTransient<IRodada, Rodada>();
+            service.AddTransient<IPartida, Partida>();
+
+            ServiceProvider provider = service.BuildServiceProvider();
+            _campeonato = provider.GetService<ICampeonato>();
+        }
+
         [TestMethod]
-        public void TestResultadoCampeonato()
+        public void ResultadoCampeonatoTest()
         {
             IEnumerable<Filme> resultadoCorreto = new List<Filme> { filmes.ElementAtOrDefault(4), filmes.ElementAtOrDefault(0) };
 
-            IEnumerable<Filme> resultado = Campeonato.Iniciar(filmes);
+            IEnumerable<Filme> resultado = _campeonato.Iniciar(filmes);
 
             Assert.IsTrue(resultado.SequenceEqual(resultadoCorreto));
         }

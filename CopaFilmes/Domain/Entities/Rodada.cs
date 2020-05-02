@@ -1,10 +1,18 @@
 ﻿using System.Collections.Generic;
+using CopaFilmes.Domain.Interfaces;
 using System.Linq;
 
 namespace CopaFilmes.Domain.Entities
 {
-    public static class Rodada
+    public class Rodada : IRodada
     {
+        private readonly IPartida _partida;
+
+        public Rodada(IPartida partida)
+        {
+            _partida = partida;
+        }
+
         private const int QUANTIDADE_DE_COMPETIDORES = 2;
 
         /// <summary>
@@ -12,7 +20,7 @@ namespace CopaFilmes.Domain.Entities
         /// </summary>
         /// <param name="filmes">Filmes que vão disputar entre si.</param>
         /// <returns>Filmes campeões da rodada.</returns>
-        public static Filme[] IniciarPrimeiraRodada(IEnumerable<Filme> filmes)
+        public Filme[] IniciarPrimeiraRodada(IEnumerable<Filme> filmes)
         {
             int qtdFilmes = filmes.Count();
             int qtdPartidas = qtdFilmes / QUANTIDADE_DE_COMPETIDORES;
@@ -23,7 +31,7 @@ namespace CopaFilmes.Domain.Entities
                 Filme competidorX = filmes.ElementAt(i);
                 Filme competidorY = filmes.ElementAt(qtdFilmes - i - 1);
 
-                Filme vencedor = Partida.Disputar(competidorX, competidorY);
+                Filme vencedor = _partida.Disputar(competidorX, competidorY);
                 rodada[i] = vencedor;
             }
 
@@ -35,7 +43,7 @@ namespace CopaFilmes.Domain.Entities
         /// </summary>
         /// <param name="filmes">Filmes que vão disputar entre si.</param>
         /// <returns>Filmes campeões da rodada.</returns>
-        public static Filme[] IniciarSemiFinal(IEnumerable<Filme> filmes)
+        public Filme[] IniciarSemiFinal(IEnumerable<Filme> filmes)
         {
             int qtdPartidas = filmes.Count() / QUANTIDADE_DE_COMPETIDORES;
             Filme[] rodada = new Filme[qtdPartidas];
@@ -45,7 +53,7 @@ namespace CopaFilmes.Domain.Entities
                 Filme competidorX = filmes.ElementAt(i);
                 Filme competidorY = filmes.ElementAt(i + 1);
 
-                Filme vencedor = Partida.Disputar(competidorX, competidorY);
+                Filme vencedor = _partida.Disputar(competidorX, competidorY);
                 rodada[i / qtdPartidas] = vencedor;
             }
 
@@ -58,14 +66,14 @@ namespace CopaFilmes.Domain.Entities
         /// <param name="competidorX">Filme que irá disputar a final.</param>
         /// <param name="competidorY">Filme que irá disputar a final.</param>
         /// <returns>Retorna a posição dos vencedores.</returns>
-        public static Filme[] IniciarFinal(Filme competidorX, Filme competidorY)
+        public Filme[] IniciarFinal(Filme competidorX, Filme competidorY)
         {
             const int INDEX_VENCEDOR = 0;
             const int INDEX_VICE = 1;
 
             Filme[] vencedores = new Filme[QUANTIDADE_DE_COMPETIDORES];
 
-            Filme vencedor = Partida.Disputar(competidorX, competidorY);
+            Filme vencedor = _partida.Disputar(competidorX, competidorY);
 
             vencedores[INDEX_VENCEDOR] = vencedor;
             vencedores[INDEX_VICE] = vencedor == competidorY ? competidorX : competidorY;

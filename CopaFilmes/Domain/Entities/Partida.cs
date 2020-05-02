@@ -1,6 +1,8 @@
-﻿namespace CopaFilmes.Domain.Entities
+﻿using CopaFilmes.Domain.Interfaces;
+
+namespace CopaFilmes.Domain.Entities
 {
-    public static class Partida
+    public class Partida : IPartida
     {
         /// <summary>
         /// Método que realiza uma disputa entre dois Filmes.
@@ -8,7 +10,7 @@
         /// <param name="competidorX">Competidor.</param>
         /// <param name="competidorY">Competidor.</param>
         /// <returns>Retorna o objeto <see cref="Filme"/> vencedor.</returns>
-        public static Filme Disputar(Filme competidorX, Filme competidorY)
+        public Filme Disputar(Filme competidorX, Filme competidorY)
         {
             if (competidorX.Nota > competidorY.Nota)
             {
@@ -30,7 +32,7 @@
         /// <param name="competidorX">Competidor.</param>
         /// <param name="competidorY">Competidor.</param>
         /// <returns>Retorna o <see cref="Filme"/> vencedor.</returns>
-        private static Filme Desempate(Filme competidorX, Filme competidorY)
+        private Filme Desempate(Filme competidorX, Filme competidorY)
         {
             const int POSICAO_VENCEDOR = 1;
 
