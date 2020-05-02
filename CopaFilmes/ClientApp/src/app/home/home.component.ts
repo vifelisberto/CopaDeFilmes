@@ -14,7 +14,7 @@ export class HomeComponent {
   public filmes: Filme[];
   public countChecks: number = 0;
 
-  private subscribes: Subscription[];
+  private subscribes: Array<Subscription> = new Array<Subscription>();
 
   constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string, private router: Router) {
     this.baseUrl = baseUrl;
