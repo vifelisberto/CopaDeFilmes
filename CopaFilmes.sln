@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29920.165
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CopaFilmes", "CopaFilmes\CopaFilmes.csproj", "{B3728413-E075-4CB0-B96E-2A42B69B5083}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test", "Test\Test.csproj", "{881A7CBB-9354-4EBD-8C67-29573C75A8BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CopaFilmesTest", "Test\CopaFilmesTest.csproj", "{881A7CBB-9354-4EBD-8C67-29573C75A8BB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
