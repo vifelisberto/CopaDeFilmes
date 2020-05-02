@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Domain.Entities;
+using CopaFilmes.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CopaFilmes.Controllers

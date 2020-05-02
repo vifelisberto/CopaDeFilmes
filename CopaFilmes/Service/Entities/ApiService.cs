@@ -1,5 +1,6 @@
-﻿using Domain.Entities;
-using Service.Interfaces;
+﻿using CopaFilmes.Domain.Entities;
+using CopaFilmes.Service.Interfaces;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,18 +9,18 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace Service.Services
+namespace CopaFilmes.Service.Entities
 {
     public class ApiService : IApiService
     {
-        //todo: colocar no appsettings
-        private const string URL_API = "https://copafilmes.azurewebsites.net/api";
-        private const string ENDPOINT_FILMES = "filmes";
         private readonly IHttpClientFactory _clientFactory;
+        private readonly string URL_API;
+        private const string KEY_URL_API = "ApiUrlFilmes";
 
-        public ApiService(IHttpClientFactory clientFactory)
+        public ApiService(IHttpClientFactory clientFactory, IConfiguration configuration)
         {
             _clientFactory = clientFactory;
+            URL_API = configuration[KEY_URL_API];
         }
 
         /// <summary>
@@ -28,7 +29,7 @@ namespace Service.Services
         /// <returns>Retorna um <see cref="IEnumerable{Filme}"/> com os filmes encontrados.</returns>
         public async Task<IEnumerable<Filme>> Get()
         {
-            var request = new HttpRequestMessage(HttpMethod.Get, $"{URL_API}/{ENDPOINT_FILMES}");
+            var request = new HttpRequestMessage(HttpMethod.Get, URL_API);
             request.Headers.Add("Accept", "application/json");
 
             HttpClient client = _clientFactory.CreateClient();

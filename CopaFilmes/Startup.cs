@@ -1,11 +1,11 @@
+using CopaFilmes.Service.Entities;
+using CopaFilmes.Service.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Service.Interfaces;
-using Service.Services;
 
 namespace CopaFilmes
 {
@@ -35,7 +35,7 @@ namespace CopaFilmes
                                   });
             });
 
-            services.AddControllersWithViews();
+            services.AddControllers();
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/dist";
@@ -50,7 +50,6 @@ namespace CopaFilmes
             }
             else
             {
-                app.UseExceptionHandler("/Error");
                 app.UseHsts();
             }
 

@@ -1,5 +1,4 @@
-﻿
-namespace Domain.Entities
+﻿namespace CopaFilmes.Domain.Entities
 {
     public static class Partida
     {

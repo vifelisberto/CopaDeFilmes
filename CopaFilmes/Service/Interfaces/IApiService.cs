@@ -1,8 +1,8 @@
-﻿using Domain.Entities;
+﻿using CopaFilmes.Domain.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Service.Interfaces
+namespace CopaFilmes.Service.Interfaces
 {
     public interface IApiService
     {

@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Domain.Entities
+namespace CopaFilmes.Domain.Entities
 {
     public class Filme
     {

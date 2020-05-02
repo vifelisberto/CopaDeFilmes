@@ -1,9 +1,9 @@
-﻿using Domain.Entities;
-using Service.Interfaces;
+﻿using CopaFilmes.Domain.Entities;
+using CopaFilmes.Service.Interfaces;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Service.Services
+namespace CopaFilmes.Service.Entities
 {
     public class FilmeService : IFilmeService
     {

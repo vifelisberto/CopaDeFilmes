@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Service.Interfaces;
+﻿using CopaFilmes.Service.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace CopaFilmes.Controllers

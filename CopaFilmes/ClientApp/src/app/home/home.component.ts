@@ -29,7 +29,6 @@ export class HomeComponent {
     this.http.post(`${this.baseUrl}api/campeonato`, filmesChecked)
       .subscribe(result =>
       {
-        debugger;
         console.log(result);
         this.router.navigate(['resultado'], { state: result });
       }, error => console.error(error));
