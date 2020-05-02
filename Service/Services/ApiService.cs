@@ -13,7 +13,7 @@ namespace Service.Services
     public class ApiService : IApiService
     {
         //todo: colocar no appsettings
-        private const string URL_API = "http://copafilmes.azurewebsites.net/api";
+        private const string URL_API = "https://copafilmes.azurewebsites.net/api";
         private const string ENDPOINT_FILMES = "filmes";
         private readonly IHttpClientFactory _clientFactory;
 

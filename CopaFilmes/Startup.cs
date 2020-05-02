@@ -18,22 +18,30 @@ namespace CopaFilmes
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        private readonly string AllowOrigins = "_allowOrigins";
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddHttpClient();
             services.AddScoped<IFilmeService, FilmeService>();
             services.AddScoped<IApiService, ApiService>();
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: AllowOrigins,
+                                  builder =>
+                                  {
+                                      builder.WithOrigins("https://copafilmes.azurewebsites.net");
+                                  });
+            });
+
             services.AddControllersWithViews();
-            // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/dist";
             });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -43,11 +51,11 @@ namespace CopaFilmes
             else
             {
                 app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
             app.UseHttpsRedirection();
+            app.UseCors();
             app.UseStaticFiles();
             if (!env.IsDevelopment())
             {
@@ -65,9 +73,6 @@ namespace CopaFilmes
 
             app.UseSpa(spa =>
             {
-                // To learn more about options for serving an Angular SPA from ASP.NET Core,
-                // see https://go.microsoft.com/fwlink/?linkid=864501
-
                 spa.Options.SourcePath = "ClientApp";
 
                 if (env.IsDevelopment())
